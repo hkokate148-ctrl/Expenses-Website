@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Login</title>
+<style>
+body {  
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+  margin: 0;
+  color: #fff;
+}
+
+/* 🔹 Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  background: rgba(255, 255, 255, 0.12);
+  flex-wrap: wrap;
+}
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: 0.3s;
+}
+.menu a:hover {
+  text-decoration: underline;
+  color: #dff;
+}
+
+/* 🔹 Profile dropdown */
+.profile {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  transition: transform 0.3s;
+}
+.profile img:hover {
+  transform: scale(1.1);
+}
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  min-width: 130px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+.dropdown a {
+  color: #185a9d;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  font-weight: 600;
+}
+.dropdown a:hover {
+  background: #185a9d;
+  color: #fff;
+}
+.profile:hover .dropdown {
+  display: block;
+}
+
+/* 🔹 Login Card */
+.card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  width: 90%;
+  max-width: 420px;
+  margin: 50px auto;
+  color: #000;
+  box-sizing: border-box;
+}
+h2 { text-align:center; color:#185a9d; margin-bottom:20px; }
+.form-group { margin-bottom:18px; }
+label { display:block; margin-bottom:6px; font-weight:600; color:#333; }
+input { width:100%; padding:10px; border-radius:8px; border:1px solid #bbb; outline:none; }
+.error-text { font-size:13px; color:red; margin-top:4px; display:none; }
+.field-error { border-color:red !important; box-shadow:0 0 5px rgba(255,0,0,0.4) !important; }
+button { width:100%; padding:12px; background:linear-gradient(135deg,#43cea2,#185a9d); border:none; color:#fff; font-size:16px; font-weight:bold; border-radius:8px; cursor:pointer; }
+button:hover { opacity:0.9; }
+.message { text-align:center; margin-top:15px; font-weight:600; }
+.success { color:green; }
+.error { color:red; }
+
+/* 🔹 Login link */
+.link-text {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+.link-text a {
+  color: #185a9d;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* 🔹 Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  .profile img {
+    margin-top: 10px;
+  }
+  .card {
+    width: 95%;
+    padding: 20px;
+    margin: 30px auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <div class="logo">💰 ExpenseApp</div>
+  <div class="menu">
+    <a href="front.html">Home</a>
+    <a href="about.html">About</a>
+    <div class="profile">
+      <img src="profile.jpg" alt="User">
+      <div class="dropdown">
+        <a href="register.html">Sign Up</a>
+        <a href="login.html">Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Login Card -->
+<div class="card">
+<h2>User Login</h2>
+<form id="loginForm">
+  <div class="form-group">
+    <label for="email">Email Address *</label>
+    <input type="email" id="email" placeholder="Enter your email">
+    <small class="error-text" id="error-email">Enter a valid email</small>
+  </div>
+  <div class="form-group">
+    <label for="password">Password *</label>
+    <input type="password" id="password" placeholder="Enter password">
+    <small class="error-text" id="error-password">Password must be at least 6 characters</small>
+  </div>
+  <button type="submit">Login</button>
+</form>
+
+<div class="link-text">
+  Don't have an account? <a href="register.html">Sign Up</a>
+</div>
+
+<div id="responseMsg" class="message"></div>
+</div>
+
+<script>
+const form = document.getElementById("loginForm");
+const msgDiv = document.getElementById("responseMsg");
+
+function showError(inputId, errorId, condition) {
+  const input = document.getElementById(inputId);
+  const error = document.getElementById(errorId);
+  if(condition){ input.classList.add("field-error"); error.style.display="block"; return true; }
+  else{ input.classList.remove("field-error"); error.style.display="none"; return false; }
+}
+
+form.addEventListener("submit", async function(e){
+  e.preventDefault();
+  msgDiv.textContent = "";
+  msgDiv.className="message";
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  let hasError=false;
+  hasError |= showError("email","error-email",!/^\S+@\S+\.\S+$/.test(email));
+  hasError |= showError("password","error-password",password.length<6);
+  if(hasError) return;
+
+  const userData={email,password};
+
+  try{
+    const res = await fetch("login.php",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify(userData)
+    });
+    const data = await res.json();
+    if(data.success){
+      localStorage.setItem("userId",data.userId);
+      msgDiv.textContent=data.message;
+      msgDiv.className="message success";
+      form.reset();
+      setTimeout(()=>{ window.location.href="expenses.html"; },1500);
+    }else{
+      msgDiv.textContent=data.message;
+      msgDiv.className="message error";
+    }
+  }catch(e){
+    msgDiv.textContent="Something went wrong!";
+    msgDiv.className="message error";
+  }
+});
+</script>
+</body>
+</html>

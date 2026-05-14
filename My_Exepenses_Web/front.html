@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home - Expense App</title>
+<style>
+/* 🔹 Basic setup */
+body {
+  font-family: Segoe UI;
+  margin: 0;
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+  color: #fff;
+}
+
+/* 🔹 Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  background: rgba(255, 255, 255, 0.12);
+  flex-wrap: wrap;
+}
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 25px; /* spacing between items */
+}
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: 0.3s;
+}
+.menu a:hover {
+  text-decoration: underline;
+  color: #dff;
+}
+
+/* 🔹 Profile dropdown */
+.profile {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  transition: transform 0.3s;
+}
+.profile img:hover {
+  transform: scale(1.1);
+}
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  min-width: 130px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+.dropdown a {
+  color: #185a9d;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  font-weight: 600;
+}
+.dropdown a:hover {
+  background: #185a9d;
+  color: #fff;
+}
+.profile:hover .dropdown {
+  display: block;
+}
+
+/* 🔹 Hero section */
+.hero {
+  text-align: center;
+  margin-top: 80px;
+  padding: 0 20px;
+}
+.hero h1 {
+  font-size: 2.3rem;
+  margin-bottom: 15px;
+}
+.hero p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* 🔹 Demo section (3-column grid) */
+.demo-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto 60px auto;
+}
+.demo-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  color: #000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.demo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+}
+.demo-card h3 {
+  text-align: center;
+  color: #185a9d;
+  margin-bottom: 15px;
+}
+
+/* 🔹 Inputs & table */
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+button {
+  width: 100%;
+  padding: 8px;
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover { opacity: 0.9; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: center;
+}
+th { background: #185a9d; color: white; }
+tr:nth-child(even){ background: #f4f4f4; }
+
+/* 🔹 Responsive Design */
+@media (max-width: 992px) {
+  .demo-section {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+  }
+}
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  .profile img {
+    margin-top: 10px;
+  }
+  .demo-section {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+  .hero h1 { font-size: 1.8rem; }
+  .hero p { font-size: 1rem; }
+}
+/* Footer */
+footer {
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  margin-top: 50px;
+  padding: 50px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+  text-align: left;
+}
+.footer-section {
+  flex: 1 1 200px;
+}
+.footer-section h4 {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: #00ffcc;
+}
+.footer-section a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 6px;
+  font-size: 15px;
+  transition: 0.2s;
+}
+.footer-section a:hover {
+  text-decoration: underline;
+  color: #43cea2;
+}
+.social-icons a {
+  margin-right: 10px;
+  font-size: 20px;
+  color: #00ffcc;
+  text-decoration: none;
+}
+.social-icons a:hover {
+  color: #43cea2;
+}
+footer p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  .footer-section {
+    flex: 1 1 100%;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- 🔹 Navbar -->
+<div class="navbar">
+  <div class="logo">💰 ExpenseApp</div>
+  <div class="menu">
+    <a href="front.html">Home</a>
+    <a href="about.html">About</a>
+
+    <div class="profile">
+      <img src="profile.jpg" alt="User">
+      <div class="dropdown">
+        <a href="register.html">Sign Up</a>
+        <a href="login.html">Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🔹 Hero section -->
+<div class="hero">
+  <h1>Welcome to Expense Tracker</h1>
+  <p>See how your expense entries look in action 👇</p>
+</div>
+
+<!-- 🔹 3-column demo -->
+<div class="demo-section">
+  
+  <div class="demo-card">
+    <h3>Step 1: Empty Form</h3>
+    <input type="number" placeholder="Amount">
+    <input type="text" placeholder="Category">
+    <input type="text" placeholder="Note (optional)">
+    <button>Add Expense</button>
+  </div>
+
+  <div class="demo-card">
+    <h3>Step 2: Filled Form</h3>
+    <input type="number" value="250" readonly>
+    <input type="text" value="Food" readonly>
+    <input type="text" value="Lunch at cafe" readonly>
+    <button>Add Expense</button>
+  </div>
+
+  <div class="demo-card">
+    <h3>Step 3: Expense Added</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Amount</th><th>Category</th><th>Note</th><th>Date</th><th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>250</td>
+          <td>Food</td>
+          <td>Lunch at cafe</td>
+          <td>06/10/2025</td>
+          <td>08:35 PM</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <!-- Quick Links -->
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <a href="#">Home</a>
+      <a href="#">Add Expense</a>
+      <a href="#">Expense Summary</a>
+      <a href="#">Reports</a>
+    </div>
+
+    <!-- Expense Categories -->
+    <div class="footer-section">
+      <h4>Expense Categories</h4>
+      <a href="#">Food & Drinks</a>
+      <a href="#">Travel</a>
+      <a href="#">Shopping</a>
+      <a href="#">Bills & Utilities</a>
+      <a href="#">Entertainment</a>
+    </div>
+
+    <!-- Resources & Support -->
+    <div class="footer-section">
+      <h4>Resources & Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">FAQs</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+    </div>
+
+    <!-- Connect & Contact -->
+    <div class="footer-section">
+      <h4>Connect With Us</h4>
+      <div class="social-icons">
+        <a href="#">📧</a>
+        <a href="#">🌐</a>
+        <a href="#">📱</a>
+      </div>
+      <p>Email: support@expensetracker.com</p>
+      <p>Phone: +91 9876543210</p>
+    </div>
+  </div>
+
+  <p style="margin-top:20px; text-align:center; font-size:14px; opacity:0.9;">
+    Expense Tracker helps you control your budget, track daily spendings, and plan your savings wisely.
+  </p>
+  <p style="text-align:center; font-size:14px; opacity:0.7;">
+    © 2025 ExpenseTracker | All Rights Reserved
+  </p>
+</footer>
+
+
+</body>
+</html>

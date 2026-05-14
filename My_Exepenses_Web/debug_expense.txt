@@ -1,0 +1,67 @@
+Array
+(
+    [amount] => 4440
+    [category] => food
+    [note] => free
+)
+Array
+(
+    [amount] => 4440
+    [category] => food
+    [note] => free
+)
+Array
+(
+    [amount] => 4440
+    [category] => food
+    [note] => free
+)
+Array
+(
+    [amount] => 4440
+    [category] => food
+    [note] => free
+)
+Array
+(
+    [amount] => 4440
+    [category] => food
+    [note] => free
+)
+Array
+(
+    [amount] => 4440
+    [category] => food
+    [note] => free
+)
+Array
+(
+    [amount] => 4440
+    [category] => food
+    [note] => free
+)
+Array
+(
+    [amount] => 4440
+    [category] => food
+    [note] => free
+)
+Array
+(
+    [amount] => 4440
+    [category] => food
+    [note] => free
+)
+Array
+(
+    [amount] => 4440
+    [category] => food
+    [note] => free
+)
+Array
+(
+    [amount] => 300
+    [category] => Production
+    [note] => offers
+)
+
