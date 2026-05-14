@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Expense Tracker</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            color: #fff;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 40px;
+            background: rgba(255, 255, 255, 0.12);
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .menu a:hover {
+            text-decoration: underline;
+            color: #dff;
+        }
+
+        /* About Section */
+        .about-container {
+            max-width: 900px;
+            margin: 60px auto;
+            background: #fff;
+            color: #000;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .about-container h1 {
+            text-align: center;
+            color: #185a9d;
+            margin-bottom: 20px;
+        }
+
+        .about-container p {
+            line-height: 1.8;
+            font-size: 17px;
+            text-align: justify;
+        }
+
+        .info-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f4f4f4;
+            border-radius: 12px;
+        }
+
+        .info-box h3 {
+            color: #185a9d;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            margin: 8px 0;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media(max-width:768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .menu {
+                margin-top: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .about-container {
+                width: 90%;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">💰 ExpenseApp</div>
+
+        <div class="menu">
+            <a href="front.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="register.html">Sign Up</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="about-container">
+
+        <h1>About Expense Tracker</h1>
+
+        <p>
+            Expense Tracker is a simple and user-friendly web application designed
+            to help users manage their daily expenses easily. Users can register,
+            login, add expenses, view records, and delete unnecessary entries.
+            This project is created to make expense management simple, fast, and
+            organized for everyone.
+        </p>
+
+        <p>
+            The website is built using HTML, CSS, JavaScript, PHP, and MySQL.
+            It provides a responsive design that works smoothly on desktop and
+            mobile devices.
+        </p>
+
+        <!-- Developer Info -->
+        <div class="info-box">
+            <h3>Developer Information</h3>
+
+            <p><strong>Name:</strong> Hemant Kokate</p>
+            <p><strong>Mobile:</strong> 6267569770</p>
+            <p><strong>Project:</strong> Expense Tracker Web Application</p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        © 2025 Expense Tracker | Developed by Hemant Kokate
+    </footer>
+
+</body>
+
+</html>
