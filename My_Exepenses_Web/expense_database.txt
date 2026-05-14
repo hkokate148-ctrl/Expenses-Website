@@ -1,3 +1,21 @@
+-- Folder  Structure 
+My_Exepenses_Web/
+│
+├── front.html
+├── about.html
+├── register.html
+├── login.html
+├── expenses.html
+│
+├── register.php
+├── login.php
+├── expense.php
+│
+├── profile.jpg
+│
+└── database/
+    └── expenses_app.sql
+
 -- Create Database
 CREATE DATABASE IF NOT EXISTS expenses_app;
 
